@@ -37,6 +37,9 @@ public class Menu
                     var contacts = phoneBook.GetContacts();
                     UserInterface.ShowPhoneBookTable(contacts);
                     break;
+                case "Add Contact":
+                    Console.WriteLine(phoneBook.AddContact());
+                    break;
                 case "Quit":
                     Console.WriteLine("goodbye!");
                     isAppRunning = false;
