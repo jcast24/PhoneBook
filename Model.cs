@@ -8,9 +8,10 @@ public class PersonContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(
-            @"Server=(localdb)\Phonebook;Database=Phonebook;Trusted_Connection=True;"
-        ).LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+        // optionsBuilder.UseSqlServer(
+        //     @"Server=(localdb)\Phonebook;Database=Phonebook;Trusted_Connection=True;"
+        // ).LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+        optionsBuilder.UseSqlServer(@"Server=(localdb)\Phonebook;Database=Phonebook;Trusted_Connection=True;");
     }
 }
 
