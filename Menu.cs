@@ -43,6 +43,9 @@ public class Menu
                 case "Delete Contact":
                     Console.WriteLine(phoneBook.DeleteContact());
                     break;
+                case "Update Contact":
+                    Console.WriteLine(phoneBook.UpdateContact());
+                    break;
                 case "Quit":
                     Console.WriteLine("goodbye!");
                     isAppRunning = false;
