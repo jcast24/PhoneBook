@@ -9,9 +9,8 @@ public class PhonebookController
         return people;
     }
 
-    public Person? GetContactById(int id)
+    public Person? GetContactById(PersonContext db, int id)
     {
-        using var db = new PersonContext();
         var person = db.Person.SingleOrDefault(x => x.Id == id);
         return person;
     }
@@ -26,12 +25,47 @@ public class PhonebookController
 
         if (int.TryParse(idInput, out id))
         {
-            var person = GetContactById(id);
+            var person = GetContactById(db, id);
             if (person is not null)
             {
                 db.Remove(person);
                 db.SaveChanges();
                 return "User successfully deleted!";
+            }
+        }
+        return "User not found\n";
+    }
+
+    public string UpdateContact()
+    {
+        using var db = new PersonContext();
+
+        Console.WriteLine("Enter id of the contact you would like to update: ");
+        string idInput = Console.ReadLine() ?? "";
+        int id;
+
+        if (int.TryParse(idInput, out id))
+        {
+            var person = GetContactById(db, id);
+            if (person is not null)
+            {
+                Console.WriteLine("Update contact");
+
+                Console.WriteLine("Enter new name: ");
+                string newName = Console.ReadLine() ?? "";
+
+                Console.WriteLine("Enter new phone number: ");
+                string newPhoneNumber = Console.ReadLine() ?? "0";
+
+                Console.WriteLine("Enter new email: ");
+                string newEmail = Console.ReadLine() ?? "";
+
+                person.Name = newName;
+                person.PhoneNumber = newPhoneNumber;
+                person.Email = newEmail;
+
+                db.SaveChanges();
+                return "Contact successfully updated!";
             }
         }
         return "User not found\n";
