@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using PhonebookProj;
 
 public class PhonebookController
@@ -15,6 +14,27 @@ public class PhonebookController
         using var db = new PersonContext();
         var person = db.Person.SingleOrDefault(x => x.Id == id);
         return person;
+    }
+
+    public string DeleteContact()
+    {
+        using var db = new PersonContext();
+
+        Console.WriteLine("Enter id:");
+        string idInput = Console.ReadLine() ?? "";
+        int id;
+
+        if (int.TryParse(idInput, out id))
+        {
+            var person = GetContactById(id);
+            if (person is not null)
+            {
+                db.Remove(person);
+                db.SaveChanges();
+                return "User successfully deleted!";
+            }
+        }
+        return "User not found\n";
     }
 
     public string AddContact()
