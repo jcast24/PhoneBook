@@ -40,6 +40,9 @@ public class Menu
                 case "Add Contact":
                     Console.WriteLine(phoneBook.AddContact());
                     break;
+                case "Delete Contact":
+                    Console.WriteLine(phoneBook.DeleteContact());
+                    break;
                 case "Quit":
                     Console.WriteLine("goodbye!");
                     isAppRunning = false;
