@@ -1,0 +1,27 @@
+using System.Text.RegularExpressions;
+
+namespace PhonebookProj;
+
+class Helper
+{
+    public static string FormatPhoneNumber(string phoneNumber)
+    {
+        string cleanedNumber = Regex.Replace(phoneNumber, "[^0-9]", "");
+
+        if (cleanedNumber.Length > 10)
+        {
+            return $"+{cleanedNumber.Substring(0, cleanedNumber.Length - 10)} " +
+                $"{cleanedNumber.Substring(cleanedNumber.Length - 10, 3)}-" +
+                $"{cleanedNumber.Substring(cleanedNumber.Length - 7, 3)}-" +
+                $"{cleanedNumber.Substring(cleanedNumber.Length - 4, 4)}";
+        }
+        else if (cleanedNumber.Length == 10)
+        {
+            return $"({cleanedNumber.Substring(0, 3)}) {cleanedNumber.Substring(3, 3)}-" + $"{cleanedNumber.Substring(6, 4)}";
+        }
+        else
+        {
+            return cleanedNumber;
+        }
+    }
+}
