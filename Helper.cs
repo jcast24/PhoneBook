@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace PhonebookProj;
@@ -23,5 +24,21 @@ class Helper
         {
             return cleanedNumber;
         }
+    }
+
+    public static bool ValidateEmail(string email)
+    {
+        var valid = true;
+
+        try
+        {
+            var emailAddress = new MailAddress(email);
+        }
+        catch
+        {
+            valid = false;
+        }
+
+        return valid;
     }
 }
