@@ -1,5 +1,7 @@
 using PhonebookProj;
 
+namespace PhonebookProj;
+
 public class PhonebookController
 {
     public List<Person> GetContacts()
@@ -11,8 +13,10 @@ public class PhonebookController
 
     public Person? GetContactById(PersonContext db, int id)
     {
-        var person = db.Person.SingleOrDefault(x => x.Id == id);
-        return person;
+        // var person = db.Person.SingleOrDefault(x => x.Id == id);
+        // return person;
+        // return db.Person.Where(i => i.Id == id).FirstOrDefault();
+        return db.Person.SingleOrDefault(x => x.Id == id);
     }
 
     public string DeleteContact()
@@ -75,6 +79,7 @@ public class PhonebookController
     {
         using var db = new PersonContext();
         var newPerson = new Person();
+        string email;
 
         // Create a new person 
         // add all their info 
@@ -86,7 +91,19 @@ public class PhonebookController
         string? phoneNumber = Console.ReadLine();
 
         Console.WriteLine("Email: ");
-        string? email = Console.ReadLine();
+        email = Console.ReadLine()!;
+
+        bool checkEmail = Helper.ValidateEmail(email!);
+        while (checkEmail == false)
+        {
+            Console.WriteLine("Please enter a valid email: ");
+            email = Console.ReadLine()!;
+
+            if (Helper.ValidateEmail(email) == true)
+            {
+                break;
+            }
+        }
 
         newPerson.Name = name!;
         newPerson.PhoneNumber = phoneNumber!;
