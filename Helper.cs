@@ -7,7 +7,9 @@ class Helper
 {
     public static bool CheckPhoneNumber(string phoneNumber)
     {
-        string phoneNumberFormat = $"{phoneNumber.Substring(0, 5)} {phoneNumber.Substring(6, 3)} {phoneNumber.Substring(10, 4)}";
+        if (phoneNumber.Length != 14) return false;
+
+        string phoneNumberFormat = $"{phoneNumber.Substring(0, 5)} {phoneNumber.Substring(6, 3)}-{phoneNumber.Substring(10, 4)}";
 
         if (phoneNumber.Equals(phoneNumberFormat))
         {
