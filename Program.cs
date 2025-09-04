@@ -1,4 +1,3 @@
-﻿Menu menu = new Menu();
+﻿Menu menu = new();
 
 menu.Run();
-
