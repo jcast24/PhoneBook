@@ -79,7 +79,8 @@ public class PhonebookController
     {
         using var db = new PersonContext();
         var newPerson = new Person();
-        string email;
+        string? email;
+        string? phoneNumber;
 
         // Create a new person 
         // add all their info 
@@ -88,7 +89,19 @@ public class PhonebookController
         string? name = Console.ReadLine();
 
         Console.WriteLine("Phone Number: ");
-        string? phoneNumber = Console.ReadLine();
+        phoneNumber = Console.ReadLine();
+
+        bool checkPhoneNumber = Helper.CheckPhoneNumber(phoneNumber!);
+        while (checkPhoneNumber == false)
+        {
+            Console.WriteLine("Please enter a valid phone number in the format of (xxx) xxx-xxxx: ");
+            phoneNumber = Console.ReadLine()!;
+
+            if (Helper.CheckPhoneNumber(phoneNumber) == true)
+            {
+                break;
+            }
+        }
 
         Console.WriteLine("Email: ");
         email = Console.ReadLine()!;
