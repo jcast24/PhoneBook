@@ -5,6 +5,17 @@ namespace PhonebookProj;
 
 class Helper
 {
+    public static bool CheckPhoneNumber(string phoneNumber)
+    {
+        string phoneNumberFormat = $"{phoneNumber.Substring(0, 5)} {phoneNumber.Substring(6, 3)} {phoneNumber.Substring(10, 4)}";
+
+        if (phoneNumber.Equals(phoneNumberFormat))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static string FormatPhoneNumber(string phoneNumber)
     {
         string cleanedNumber = Regex.Replace(phoneNumber, "[^0-9]", "");
