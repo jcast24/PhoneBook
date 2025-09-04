@@ -1,3 +1,5 @@
-﻿Menu menu = new();
+﻿using PhonebookProj;
+
+Menu menu = new();
 
 menu.Run();
